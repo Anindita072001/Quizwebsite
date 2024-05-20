@@ -1,0 +1,76 @@
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>RegistrationForm</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		
+		<link rel="stylesheet" href="../../assets/reg/fonts/linearicons/style.css">
+		
+		
+		<link rel="stylesheet" href="../../assets/reg/css/style.css">
+		
+	</head>
+
+	<body>
+	
+
+		<div class="wrapper">
+			<div class="inner">
+				<img src="../../assets/reg/images/image-1.png" alt="" class="image-1">
+				<form [formGroup]="userReg" (ngSubmit)="register()">
+					<h3>New Account?</h3>
+
+					<div class="form-holder">
+						<span class="lnr lnr-user"></span>
+						<input type="email" class="form-control" required placeholder="Email Address" formControlName="email">
+					</div>
+                    <div class="invalidField" *ngIf="userReg.get('email').errors?.required && userReg.get('email').touched" style="color: red;">
+                        Email is required.
+                      </div>
+                      <div class="invalidField" *ngIf="userReg.get('email').errors?.email && userReg.get('email').touched" style="color: red;">
+                        Please enter a valid email.
+                      </div>
+
+
+					<div class="form-holder">
+						<span class="lnr lnr-phone-handset"></span>
+						<input type="text" class="form-control" required placeholder="Phone Number" formControlName="phoneNo">
+					</div>
+                    <div class="invalidField" *ngIf="userReg.get('phoneNo').errors?.required && userReg.get('phoneNo').touched" style="color: red;">
+                        phone Number is required.
+                      </div>
+                      <div class="invalidField" *ngIf="userReg.get('phoneNo').errors?.pattern && userReg.get('phoneNo').touched" style="color: red;">
+                        Enter a valid phone Number.
+                      </div>
+
+
+					
+					<div class="form-holder">
+						<span class="lnr lnr-lock"></span>
+						<input type="password" class="form-control" required placeholder="Password" formControlName="password">
+					</div>
+                    <div class="invalidField" *ngIf="userReg.get('password').errors?.required && userReg.get('password').touched" style="color: red;">
+                        Password is required.
+                      </div>
+                      <div class="invalidField" *ngIf="userReg.get('password').errors?.minlength && userReg.get('password').touched" style="color: red;">
+                        Password must be at least 6 characters long.
+                      </div>
+
+
+					
+					<button>
+						<span>Register</span>
+					</button>
+					<br>
+					<p style="color: black;">Already have account?? <a [routerLink]="['']"> Log in</a> </p>
+				</form>
+				<img src="../../assets/reg/images/image-2.png" alt="" class="image-2">
+			</div>
+			
+		</div>
+		
+		
+	</body>
+

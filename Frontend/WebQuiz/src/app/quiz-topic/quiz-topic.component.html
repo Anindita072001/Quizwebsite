@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<div class="ag-format-container">
+    <div class="ag-courses_box">
+      
+  
+      <div class="ag-courses_item" *ngFor="let q of qData">
+        <a class="ag-courses-item_link" [routerLink]="['/quiz', q.quizId,useremail]">
+          <div class="ag-courses-item_bg"></div>
+  
+          <div class="ag-courses-item_title">
+          {{q.quizTopic}}
+          </div>
+  
+          <div class="ag-courses-item_date-box">
+            QUIZID:
+            <span class="ag-courses-item_date">
+                {{q.quizId}}
+            </span>
+          </div>
+        </a>
+      </div>
+  
+    </div>
+  </div>
+</body>
+</html>
+

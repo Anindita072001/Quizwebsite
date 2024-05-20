@@ -1,0 +1,40 @@
+
+  <body>
+   <div class="quiz-section" *ngIf="!isQuizCompleted">
+  <div class="timer" style="color: red;">Time Remaining: {{ timer / 1000 }} seconds</div>
+  
+  <div id="quiz" *ngIf="qData.quizDTO.length > 0">
+    <div *ngIf="currentQuestionIndex < qData.quizDTO.length">
+      <h2 class="question" id="question">{{ currentQuestionIndex + 1 }}. {{ questions[currentQuestionIndex].question }}</h2>
+      <hr />
+      <ul>
+        <li *ngFor="let option of [questions[currentQuestionIndex].q1, questions[currentQuestionIndex].q2, questions[currentQuestionIndex].q3, questions[currentQuestionIndex].q4]"
+            [ngClass]="getOptionClass(option)">
+          <input type="radio" name="option" [value]="option" (change)="submitAnswer(option)" [checked]="userAnswers[currentQuestionIndex] === option" [disabled]="answerSubmitted">
+          {{ option }}
+        </li>
+      </ul>
+      <hr />
+      <div class="btn">
+        <button (click)="previousQuestion()" [disabled]="currentQuestionIndex === 0">Previous</button>
+        <button (click)="nextQuestion()" [disabled]="!isOptionSelected || answerSubmitted">Next</button>
+        <br>
+        <br>
+        <br>
+        <strong>Question out of:{{currentQuestionIndex+1}} of {{qData.quizDTO.length}}</strong>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="currentQuestionIndex === questions.length - 1 && !answerSubmitted">
+    <button (click)="submitQuiz()">Submit Quiz</button>
+  </div>
+</div>
+<div class="result" *ngIf="isQuizCompleted">
+  <h2>🏆 Your Score: {{ score }}/{{ questions.length }} Correct Answers</h2>
+  <p>Congratulations on completing the quiz! 🎉</p>
+  <button class="reload-button" (click)="reloadQuiz()">Play Again 🔄</button>
+</div>
+    
+    
+  </body>
+
